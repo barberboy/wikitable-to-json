@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Wikitable-to-JSON</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-size: 18px;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        
+        #url {
+            display: block;
+            width: 100%;
+            font-size: 20px;
+            padding: .5em;
+        }
+        
+        #output {
+            display: block;
+            font-size: 12px;
+            height: 40em;
+            margin: auto;
+            font-family: monospace;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="wiki-to-json" method="get" action="">
+        <input id="url" placeholder="Enter Wikipedia URL" autofocus>
+        <label>
+            <input type="checkbox" id="pretty-print">Pretty print</label>
+        <button type="submit">Fetch!</button>
+        <textarea id="output"></textarea>
+    </form>
+    <script>
+        var form = document.getElementById('wiki-to-json')
+        var url = document.getElementById('url')
+        var pretty = document.getElementById('pretty-print')
+        var output = document.getElementById('output')
+        form.onsubmit = function(evt) {
+            evt.preventDefault()
+            evt.stopPropagation()
+
+            var a = document.createElement('a');
+            a.href = url.value;
+            //document.location = a.pathname
+            var xhr = new XMLHttpRequest()
+            xhr.onload = function() {
+                var response = xhr.responseText
+                if (pretty.checked) {
+                    output.innerHTML = JSON.stringify(JSON.parse(response), undefined, 4)
+                }
+                else {
+                    output.innerHTML = response
+                }
+            }
+            xhr.open('get', a.pathname)
+            xhr.send()
+            return false;
+        };
+    </script>
+</body>
+
+</html>

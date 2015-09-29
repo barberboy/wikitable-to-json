@@ -1,2 +1,3 @@
-# wikitable-to-json
-Generate a JSON representation of a Wikipedia table
+# Wikitable-to-JSON
+
+Generate a JSON representation of a Wikipedia table.
