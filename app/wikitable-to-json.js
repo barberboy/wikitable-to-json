@@ -10,7 +10,7 @@ function parseWikiTable(title, cb) {
 
     fetch(apiUrl, {
             headers: {
-                'User-Agent': 'Wikitable-To-JSON/1.0 (https://github.com/barberboy/wikitable-to-json'
+                'User-Agent': 'Wikitable-To-JSON/1.0 (https://github.com/barberboy/wikitable-to-json)'
             }
         })
         .then(function(res) {
